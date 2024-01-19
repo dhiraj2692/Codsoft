@@ -1,0 +1,62 @@
+import os
+
+def generate_portfolio(project_data):
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Development Portfolio</title>
+    </head>
+    <body>
+        <header>
+            <h1>Your Name</h1>
+            <p>Web Developer</p>
+        </header>
+        <section id="projects">
+            <h2>Projects</h2>
+    """
+
+    for project in project_data:
+        html_content += f"""
+            <article>
+                <h3>{project['name']}</h3>
+                <p>{project['description']}</p>
+                <p>Technologies: {', '.join(project['technologies'])}</p>
+                <a href="{project['github']}">GitHub</a>
+                <hr>
+            </article>
+        """
+
+    html_content += """
+        </section>
+        <footer>
+            <p>Contact: your.email@example.com</p>
+        </footer>
+    </body>
+    </html>
+    """
+
+    with open('portfolio.html', 'w') as file:
+        file.write(html_content)
+
+if __name__ == "__main__":
+    projects = [
+        {
+            'name': 'Project 1',
+            'description': 'Description of Project 1',
+            'technologies': ['HTML', 'CSS', 'JavaScript'],
+            'github': 'https://github.com/yourusername/project1'
+        },
+        {
+            'name': 'Project 2',
+            'description': 'Description of Project 2',
+            'technologies': ['Python', 'Django'],
+            'github': 'https://github.com/yourusername/project2'
+        },
+        # Add more projects as needed
+    ]
+
+    generate_portfolio(projects)
+    print("Portfolio generated successfully. Check portfolio.html.")
